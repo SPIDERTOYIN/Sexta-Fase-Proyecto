@@ -1,4 +1,3 @@
-#init_db.py
 from app import app, db, Usuario, Sucursal, Empleado
 
 with app.app_context():
@@ -25,3 +24,4 @@ with app.app_context():
 
     db.session.commit()
     print("✅ BD inicializada con datos de prueba")
+
