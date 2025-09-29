@@ -1,0 +1,13 @@
+<!-- dashboard.html -->
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+  <h2>Bienvenido, {{ usuario.nombre }}</h2>
+  <p>Selecciona una sucursal para ver los detalles:</p>
+  <ul>
+    {% for suc in sucursales %}
+      <li><a href="{{ url_for('ver_sucursal', id=suc.id) }}">{{ suc.nombre }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
