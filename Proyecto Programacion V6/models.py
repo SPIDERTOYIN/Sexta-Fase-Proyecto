@@ -8,7 +8,7 @@ class Usuario(db.Model):
     nombre = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
-    rol = db.Column(db.String(20), default="admin")  # "admin" o "dueno"
+    rol = db.Column(db.String(20), default="admin")  
     sucursal_id = db.Column(db.Integer, db.ForeignKey('sucursal.id'))
 
     def set_password(self, password):
@@ -26,7 +26,7 @@ class Sucursal(db.Model):
 class Empleado(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
-    huella_id = db.Column(db.Integer, unique=True, nullable=False)  # ID que manda Arduino/ESP32
+    huella_id = db.Column(db.Integer, unique=True, nullable=False)  
     sucursal_id = db.Column(db.Integer, db.ForeignKey('sucursal.id'))
     asistencias = db.relationship('Asistencia', backref='empleado', lazy=True)
 
@@ -36,11 +36,5 @@ class Asistencia(db.Model):
     fecha = db.Column(db.Date, server_default=db.func.current_date())
     hora_entrada = db.Column(db.Time)
     hora_salida = db.Column(db.Time)
-#Para la rúbrica
-class Accion(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
-    opcion = db.Column(db.Integer, nullable=False)  # 1-5
-    descripcion = db.Column(db.String(200))
-    timestamp = db.Column(db.DateTime, server_default=db.func.now())
+
 
